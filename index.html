@@ -294,16 +294,17 @@ footer{
         under a minute.
       </p>
       <p class="body">
-        I also ran the evaluation: 305 generated models scored blind against
-        ground-truth-free metrics, with paired bootstrap confidence intervals, to find
-        which segmentation and generation combinations actually held up. One track
-        separated no pipeline pair at p &lt; 0.05, which is a result worth reporting
-        rather than hiding.
+        I also ran the evaluation: 305 generated models measured on
+        ground-truth-free metrics with paired bootstrap confidence intervals,
+        the second batch of 207 also scored blind with engine identities
+        hidden, to find which segmentation and generation combinations actually
+        held up. Neither track separated any pipeline pair at p &lt; 0.05,
+        which is a result worth reporting rather than hiding.
       </p>
       <dl class="measures">
         <div><dt>Assets generated</dt><dd>753</dd></div>
         <div><dt>Dimensional MAPE</dt><dd class="hl">24.6%</dd></div>
-        <div><dt>Models scored</dt><dd>305</dd></div>
+        <div><dt>Models evaluated</dt><dd>305</dd></div>
         <div><dt>Time per asset</dt><dd>&lt; 1 min</dd></div>
       </dl>
       <p class="stack">PyTorch · TRELLIS · Hunyuan3D · SAM · UniDepth · FastAPI · React · Three.js · Docker · CUDA</p>
