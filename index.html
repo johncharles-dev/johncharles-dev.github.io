@@ -284,6 +284,34 @@ footer{
 
     <article class="entry">
       <div class="entry-top">
+        <h3>SceneSense — urban scene understanding with VLMs and an LLM agent</h3>
+        <span class="when num">2026</span>
+      </div>
+      <p class="body">
+        An end-to-end system on Singapore and Boston driving video, from detection to an
+        LLM agent you can question. RT-DETR fine-tuned on nuImages with ByteTrack
+        tracking, and YOLO11 exported to TensorRT fp16 with no measurable mAP loss.
+        Qwen2-VL-2B fine-tuned with LoRA for grounded visual question answering, served
+        on vLLM; AWQ 4-bit was rejected after it cost 4&ndash;6 points of box grounding.
+      </p>
+      <p class="body">
+        On top sits a tool-calling Qwen2.5-14B agent with RAG over the tracking logs,
+        exact-count tools and VLM frame checks. On a 51-question held-out set it refused
+        all 9 unanswerable questions, against 5 of 9 for a 7B baseline, and 86% of its
+        citations were backed by the logs. Served through FastAPI and docker-compose.
+      </p>
+      <dl class="measures">
+        <div><dt>Detection mAP</dt><dd>0.477</dd></div>
+        <div><dt>Grounded VQA</dt><dd class="hl">59.0 &rarr; 75.1%</dd></div>
+        <div><dt>Unanswerable refused</dt><dd>9 / 9</dd></div>
+        <div><dt>TensorRT per frame</dt><dd>0.62 ms</dd></div>
+      </dl>
+      <p class="stack">PyTorch · RT-DETR · YOLO11 · ByteTrack · TensorRT · Qwen2-VL · LoRA · vLLM · Chroma · FastAPI · Docker</p>
+      <p class="links"><a href="https://github.com/johncharles-dev/scenesense">Repository</a></p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-top">
         <h3>HTX-3D — image-to-3D generation pipeline</h3>
         <span class="when num">2025–26</span>
       </div>
@@ -292,21 +320,22 @@ footer{
         One interface over several image-to-3D and text-to-3D engines, with interactive
         segmentation, on-demand GPU memory management, browser-based 3D preview and
         GLB/OBJ/STL/PLY export. Asset creation went from days of manual modelling to
-        under a minute.
+        10&ndash;75 seconds.
       </p>
       <p class="body">
         I also ran the evaluation: 305 generated models measured on
         ground-truth-free metrics with paired bootstrap confidence intervals,
         the second batch of 207 also scored blind with engine identities
         hidden, to find which segmentation and generation combinations actually
-        held up. Neither track separated any pipeline pair at p &lt; 0.05,
-        which is a result worth reporting rather than hiding.
+        held up. No pipeline differed significantly on dimensional accuracy, which is
+        a result worth reporting rather than hiding; the one confident finding was that
+        Hunyuan3D with rembg was about 3x worse on proportions than the rest.
       </p>
       <dl class="measures">
         <div><dt>Assets generated</dt><dd>753</dd></div>
         <div><dt>Dimensional MAPE</dt><dd class="hl">24.6%</dd></div>
         <div><dt>Models evaluated</dt><dd>305</dd></div>
-        <div><dt>Time per asset</dt><dd>&lt; 1 min</dd></div>
+        <div><dt>Time per asset</dt><dd>10&ndash;75 s</dd></div>
       </dl>
       <p class="stack">PyTorch · TRELLIS · Hunyuan3D · SAM · UniDepth · FastAPI · React · Three.js · Docker · CUDA</p>
       <p class="links"><a href="https://github.com/johncharles-dev/HTX-3D">Repository</a></p>
@@ -339,32 +368,7 @@ footer{
         <div><dt>Team IoU result</dt><dd>0.386</dd></div>
       </dl>
       <p class="stack">PyTorch · LoRA / PEFT · RefCOCO · FastAPI · React · Docker · CUDA 12.8 · GitHub Actions</p>
-      <p class="links"><a href="https://github.com/vincent-chengsheng-zheng/visual-grounding-api">Repository</a></p>
-    </article>
-
-    <article class="entry">
-      <div class="entry-top">
-        <h3>Data centre digital twin — predictive cooling failure</h3>
-        <span class="when num">2026</span>
-      </div>
-      <p class="body">
-        Six interacting twins — three racks, cooling, occupancy, energy — over an MQTT
-        backbone, with a classifier on eleven CRAC signals that flags cooling failure up
-        to four hours before conventional sensor thresholds trigger.
-      </p>
-      <p class="body">
-        Built advisory-only: nothing actuates, and every recommendation lands in a
-        hash-chained audit trail. Broker authentication, topic ACLs and a six-file test
-        suite covering security, audit integrity and feature validation.
-      </p>
-      <dl class="measures">
-        <div><dt>Warning lead time</dt><dd class="hl">4 hours</dd></div>
-        <div><dt>Interacting twins</dt><dd>6</dd></div>
-        <div><dt>CRAC signals</dt><dd>11</dd></div>
-        <div><dt>Labelled runs</dt><dd>140</dd></div>
-      </dl>
-      <p class="stack">Python · Scikit-learn · MQTT (Mosquitto) · Docker · systemd</p>
-      <p class="links"><a href="https://github.com/johncharles-dev/Data_Center_Digital_Twin">Repository</a></p>
+      <p class="links"><a href="https://github.com/johncharles-dev/visual-grounding-api">Repository</a></p>
     </article>
 
     <article class="entry">
@@ -372,7 +376,7 @@ footer{
         <h3>HDB resale price prediction and recommendation</h3>
         <span class="when num">2025</span>
       </div>
-      <p class="role">Team project, SUTD — I sourced the data, built the hybrid model and the backend</p>
+      <p class="role">Team project, SUTD — I sourced the data and built the hybrid model</p>
       <p class="body">
         I sourced, cleaned and structured the HDB transaction and OneMap geospatial
         datasets behind the project: 254,000 transactions across 2015&ndash;2025. When the
@@ -396,17 +400,28 @@ footer{
 
     <article class="entry">
       <div class="entry-top">
-        <h3>CodeMentor — code analysis assistant</h3>
-        <span class="when num">2025</span>
+        <h3>Data centre digital twin — predictive cooling failure</h3>
+        <span class="when num">2026</span>
       </div>
       <p class="body">
-        Review, optimisation, debugging, refactoring, explanation, documentation and
-        translation across languages, built on a microservices architecture with REST
-        APIs. AST and tree-sitter parsing so transformations are language-aware rather
-        than string substitution.
+        Six interacting twins — three racks, cooling, occupancy, energy — over an MQTT
+        backbone, with a classifier on eleven CRAC signals that warns of cooling failure within a
+        four-hour window &mdash; 1.5x more warning than the room's threshold rules
+        (median 292 vs 195 minutes).
       </p>
-      <p class="stack">React · Flask · MySQL · OpenAI API · tree-sitter · AST</p>
-      <p class="links"><a href="https://github.com/johncharles-dev/CodeMentor_Public">Repository</a></p>
+      <p class="body">
+        Built advisory-only: nothing actuates, and every recommendation lands in a
+        hash-chained audit trail. Broker authentication, topic ACLs and a six-file test
+        suite covering security, audit integrity and feature validation.
+      </p>
+      <dl class="measures">
+        <div><dt>More warning than thresholds</dt><dd class="hl">1.5x</dd></div>
+        <div><dt>Interacting twins</dt><dd>6</dd></div>
+        <div><dt>CRAC signals</dt><dd>11</dd></div>
+        <div><dt>Labelled runs</dt><dd>140</dd></div>
+      </dl>
+      <p class="stack">Python · Scikit-learn · MQTT (Mosquitto) · Docker · systemd</p>
+      <p class="links"><a href="https://github.com/johncharles-dev/Data_Center_Digital_Twin">Repository</a></p>
     </article>
   </section>
 
@@ -421,7 +436,7 @@ footer{
       <p class="body">
         Built the image-to-3D asset pipeline above for digital-twin environments, from
         the generative 3D models (TRELLIS, Hunyuan3D, SAM 3D) through to the evaluation methodology. Containerised it
-        with Docker and GPU passthrough, demonstrated it live on an RTX 5090, and handed
+        with Docker and GPU passthrough, demonstrated it live to HTX stakeholders on an RTX 5090, and handed
         it over with pinned dependencies and a verified clean-machine installation.
       </p>
     </article>
@@ -432,10 +447,10 @@ footer{
     <dl class="caps">
       <div><dt>Languages</dt><dd>Python, C/C++, SQL, JavaScript</dd></div>
       <div><dt>ML and deep learning</dt><dd>PyTorch, Scikit-learn, XGBoost, NumPy, Pandas, CUDA</dd></div>
-      <div><dt>LLMs and generative AI</dt><dd>LLaVA (VLM fine-tuning), LoRA / PEFT, prompt orchestration, LLM-based code analysis, generative 3D (TRELLIS, Hunyuan3D), evaluation of generative outputs</dd></div>
-      <div><dt>Vision and 3D</dt><dd>CLIP, SAM 3, UniDepth, TRELLIS, Hunyuan3D, OpenCV, Meshroom photogrammetry</dd></div>
-      <div><dt>Deployment</dt><dd>Docker, FastAPI, Flask, React, Three.js, AWS EC2, Git, CI/CD, Linux</dd></div>
-      <div><dt>Hardware</dt><dd>Self-built RTX 5090 server — Ubuntu 24.04, CUDA 12.8, Docker with GPU passthrough, remote access. Ported TRELLIS to Blackwell <span class="num">sm_120</span> before upstream support existed &mdash; a custom SDPA attention backend, CUDA arch flags and float16 fixes.</dd></div>
+      <div><dt>LLMs and generative AI</dt><dd>Qwen2.5, Qwen2-VL, LLaVA, LoRA / PEFT fine-tuning, RAG, Chroma, agentic workflows, vLLM, generative 3D (TRELLIS, Hunyuan3D)</dd></div>
+      <div><dt>Vision and 3D</dt><dd>Object detection, multi-object tracking, RT-DETR, YOLO11, ByteTrack, TensorRT, CLIP, SAM 3, UniDepth, OpenCV</dd></div>
+      <div><dt>Deployment</dt><dd>Docker, Docker Compose, FastAPI, Flask, MLflow, React, Three.js, AWS EC2, Git, CI/CD, Linux</dd></div>
+      <div><dt>Hardware</dt><dd>Self-built RTX 5090 server — Ubuntu 24.04, CUDA 12.8, Docker with GPU passthrough, remote access.</dd></div>
     </dl>
   </section>
 
